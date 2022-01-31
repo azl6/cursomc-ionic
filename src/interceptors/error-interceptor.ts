@@ -36,7 +36,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 break;
 
                 default:
-                this.handleDefaultError();
+                this.handleDefaultError(errorObj);
                 break;
             }
 
