@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { API_CONFIG } from '../../config/api.config';
 import { ProdutoDTO } from '../../models/produto.dto';
+import { API_CONFIG } from '../../config/api.config';
 import { ProdutoService } from '../../services/domain/produto.service';
 
 @IonicPage()
@@ -13,9 +13,23 @@ export class ProdutosPage {
 
   items : ProdutoDTO[];
 
-  constructor(public navCtrl: NavController,
-     public navParams: NavParams,
-     public produtoService: ProdutoService) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public produtoService: ProdutoService) {
+  }
+
+  ionViewDidLoad() {
+    let categoria_id = this.navParams.get('categoria_id');
+    this.produtoService.findByCategoria(categoria_id)
+      .subscribe(response => {
+        this.items = response["content"];
+        console.log(this.items[0].id)
+        console.log(this.items[0].nome)
+        console.log(this.items[0].preco)
+        this.loadImageUrls();
+      },
+      error => {});
   }
 
   loadImageUrls() {
@@ -27,20 +41,10 @@ export class ProdutosPage {
         },
         error => {});
     }
-  }
+  }  
 
-  ionViewDidLoad() {
-    this.produtoService.findByCategoria(this.navParams.get("categoria_id"))
-    .subscribe(response => {
-      this.items = response['content'];
-      this.loadImageUrls();
-    },
-    error => {})
-  };
-
-  showDetail(produto_id: string) {
+  showDetail(produto_id : string) {
     this.navCtrl.push('ProdutoDetailPage', {produto_id: produto_id});
   }
-
-  
 }
+
