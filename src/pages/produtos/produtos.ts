@@ -29,14 +29,15 @@ export class ProdutosPage {
   }
 
   ionViewDidLoad() {
+    this.loadData();
+  }
+
+  loadData(){
     let categoria_id = this.navParams.get('categoria_id');
     let loader = this.presentLoading();
     this.produtoService.findByCategoria(categoria_id)
       .subscribe(response => {
-        this.items = response["content"];
-        console.log(this.items[0].id)
-        console.log(this.items[0].nome)
-        console.log(this.items[0].preco)
+        this.items = response['content'];
         loader.dismiss();
         this.loadImageUrls();
       },
@@ -44,6 +45,14 @@ export class ProdutosPage {
         loader.dismiss();
       });
   }
+  
+   doRefresh(refresher) {
+    this.loadData();
+    setTimeout(() => {
+      refresher.complete();
+    }, 1000);
+  }
+  
 
   loadImageUrls() {
     for (var i=0; i<this.items.length; i++) {
