@@ -5,6 +5,8 @@
 ### Frontend mobile app, built during the Udemy course Spring Boot, Hibernate, REST, Ionic, JWT, S3, MySQL, MongoDB, by @Nelio Alves
 ### link to the course: https://www.udemy.com/course/spring-boot-ionic/
 
+### The frontend has to be run simultaniously with its backend, located at: https://github.com/azold6/cursomc
+
 ### Technologies used:
 
 + HTML
