@@ -14,7 +14,7 @@
 + Typescript
 + Ionic
 + Angular
-
++ AWS (Amazon S3) 
 ### Project views:
 
 ![Captura da Web_17-3-2022_144949_localhost](https://user-images.githubusercontent.com/80921933/159069869-115606a8-2413-4df5-9c8b-c3277b4a87c0.jpeg)
